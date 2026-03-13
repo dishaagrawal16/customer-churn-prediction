@@ -19,6 +19,15 @@ with open("encoders.pkl", "rb") as f:
 
 st.title("Customer Churn Prediction")
 
+uploaded_file = st.file_uploader("Upload Customer CSV")
+
+if uploaded_file:
+    data = pd.read_csv(uploaded_file)
+    predictions = model.predict(data)
+    data["Churn Prediction"] = predictions
+    st.info("Upload a CSV file with the same columns as the training dataset.")
+    st.write(data)  
+    
 gender = st.selectbox("Gender", ["Male", "Female"])
 SeniorCitizen = st.selectbox("Senior Citizen", [0, 1])
 Partner = st.selectbox("Partner", ["Yes", "No"])
@@ -44,6 +53,7 @@ PaymentMethod = st.selectbox(
      "Bank transfer (automatic)", 
      "Credit card (automatic)"]
 )
+
 
 
 importances = model.feature_importances_
@@ -104,7 +114,7 @@ if st.button("Predict"):
 
         st.success(f"Customer likely to Stay (Probability: {round(prob,3)})")
 
-
+    
 
     if prob > 0.5:
      st.write("Suggested Action:")
@@ -112,3 +122,4 @@ if st.button("Predict"):
      st.write("• Provide discount or loyalty benefit")
      st.success(f"Customer likely to Stay (Probability: {round(prob,3)})")
 
+   
