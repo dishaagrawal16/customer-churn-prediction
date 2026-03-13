@@ -1,10 +1,8 @@
 import streamlit as st
 import pickle
 import pandas as pd
-<<<<<<< HEAD
+
 import matplotlib.pyplot as plt
-=======
->>>>>>> 84dbfb1fbe466cd3b532c902853e73de779d0719
 
 # ------------------ Load Model ------------------
 
@@ -47,7 +45,7 @@ PaymentMethod = st.selectbox(
      "Credit card (automatic)"]
 )
 
-<<<<<<< HEAD
+
 importances = model.feature_importances_
 features = feature_names
 
@@ -56,8 +54,7 @@ ax.barh(features, importances)
 ax.set_title("Feature Importance")
 st.pyplot(fig)        
 
-=======
->>>>>>> 84dbfb1fbe466cd3b532c902853e73de779d0719
+
 MonthlyCharges = st.number_input("Monthly Charges", 0.0, 200.0, 50.0)
 TotalCharges = st.number_input("Total Charges", 0.0, 10000.0, 500.0)
 
@@ -98,15 +95,13 @@ if st.button("Predict"):
 
     prob = model.predict_proba(input_df)[:,1][0]
     prediction = 1 if prob > 0.5 else 0
-<<<<<<< HEAD
-    
-=======
->>>>>>> 84dbfb1fbe466cd3b532c902853e73de779d0719
+
 
     if prediction == 1:
         st.error(f"Customer likely to Churn (Probability: {round(prob,3)})")
     else:
-<<<<<<< HEAD
+        st.success(f"Customer likely to Stay (Probability: {round(prob,3)})")
+
         st.success(f"Customer likely to Stay (Probability: {round(prob,3)})")
 
 
@@ -115,7 +110,5 @@ if st.button("Predict"):
      st.write("Suggested Action:")
      st.write("• Offer long-term contract")
      st.write("• Provide discount or loyalty benefit")
+     st.success(f"Customer likely to Stay (Probability: {round(prob,3)})")
 
-=======
-        st.success(f"Customer likely to Stay (Probability: {round(prob,3)})")
->>>>>>> 84dbfb1fbe466cd3b532c902853e73de779d0719
